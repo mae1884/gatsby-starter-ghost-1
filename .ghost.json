@@ -1,10 +1,10 @@
 {
   "development": {
     "apiUrl": "https://albanycountypost.com",
-    "contentApiKey": "9cc5c67c358edfdd81455149d0"
+    "contentApiKey": "35ba1778a9f05e6c9cc8f09f79"
   },
   "production": {
-    "apiUrl": "https://gatsby.ghost.io",
-    "contentApiKey": "9cc5c67c358edfdd81455149d0"
+    "apiUrl": "https://albanycountypost.com",
+    "contentApiKey": "35ba1778a9f05e6c9cc8f09f79"
   }
 }
