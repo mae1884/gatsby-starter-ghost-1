@@ -561,7 +561,7 @@ h6 {
 .content-body h4,
 .content-body h5,
 .content-body h6 {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans-serif);
 }
 
 .content-body h1 {
