@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { Link, StaticQuery, graphql } from 'gatsby'
@@ -22,6 +22,18 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
     const site = data.allGhostSettings.edges[0].node
     const twitterUrl = site.twitter ? `https://twitter.com/${site.twitter.replace(/^@/, ``)}` : null
     const facebookUrl = site.facebook ? `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}` : null
+
+    useEffect(() => {
+        if (algoliasearchNetlify)
+            algoliasearchNetlify({
+                appId: process.env.GATSBY_ALGOLIA_APP_ID,
+                apiKey: process.env.GATSBY_ALGOLIA_SEARCH_KEY,
+                siteId: process.env.GATSBY_ALGOLIA_SITE_ID,
+                branch: 'master',
+                selector: 'div#search-box',
+                placeholder: 'What would you like to know?'
+            });
+    }, [])
 
     return (
         <>
@@ -56,6 +68,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 <div className="site-banner">
                                     <img className="site-logo" src={site.logo}></img>
                                     <p className="site-banner-desc">{site.description}</p>
+                                    <div id="search-box"></div>
                                 </div> :
                                 null}
                             <nav className="site-nav">
