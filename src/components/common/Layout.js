@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { Link, StaticQuery, graphql } from 'gatsby'
@@ -22,6 +22,18 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
     const site = data.allGhostSettings.edges[0].node
     const twitterUrl = site.twitter ? `https://twitter.com/${site.twitter.replace(/^@/, ``)}` : null
     const facebookUrl = site.facebook ? `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}` : null
+
+    useEffect(() => {
+        if (algoliasearchNetlify)
+            algoliasearchNetlify({
+                appId: 'LKEU65MSS7',
+                apiKey: '49b96108e473cdb9667736a3fe172dfd',
+                siteId: 'edd374d0-3941-4997-8ee1-216ae36e084c',
+                branch: 'master',
+                selector: 'div#search-box',
+                placeholder: 'What would you like to know?'
+            });
+    }, [])
 
     return (
         <>
