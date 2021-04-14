@@ -26,9 +26,9 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
     useEffect(() => {
         if (algoliasearchNetlify)
             algoliasearchNetlify({
-                appId: 'LKEU65MSS7',
-                apiKey: '49b96108e473cdb9667736a3fe172dfd',
-                siteId: 'edd374d0-3941-4997-8ee1-216ae36e084c',
+                appId: process.env.GATSBY_ALGOLIA_APP_ID,
+                apiKey: process.env.GATSBY_ALGOLIA_SEARCH_KEY,
+                siteId: process.env.GATSBY_ALGOLIA_SITE_ID,
                 branch: 'master',
                 selector: 'div#search-box',
                 placeholder: 'What would you like to know?'
