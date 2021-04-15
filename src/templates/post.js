@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
 import { Helmet } from 'react-helmet'
+import { readingTime as readingTimeHelper } from '@tryghost/helpers'
 
 import { Layout } from '../components/common'
 import { MetaData } from '../components/common/meta'
@@ -14,7 +15,8 @@ import { MetaData } from '../components/common/meta'
 */
 const Post = ({ data, location }) => {
     const post = data.ghostPost
-
+    const readingTime = readingTimeHelper(post)
+    console.log(post)
     return (
         <>
             <MetaData
@@ -38,6 +40,16 @@ const Post = ({ data, location }) => {
                             </ul>}
                             <h1 className="content-title">{post.title}</h1>
                             <p className="post-excerpt">{post.excerpt}</p>
+                            <Link to={`/author/${post.primary_author.slug}`} className="article-byline-content">
+                                <img className="author-profile-image" src={post.primary_author.profile_image || '/images/icons/avatar.svg'} alt={post.primary_author.name}/>
+                                <div className="article-byline-meta">
+                                    <div className="author-name">{post.primary_author.name}</div>
+                                    <div>
+                                        <time className="byline-meta-date" dateTime={post.published_at}>{post.published_at_pretty}</time>
+                                        <span className="byline-reading-time"><span className="bull">•</span> {readingTime}</span>
+                                    </div>
+                                </div>
+                            </Link>
                             {/* The main post content */ }
                             <section
                                 className="content-body load-external-scripts"
@@ -59,9 +71,14 @@ Post.propTypes = {
             html: PropTypes.string.isRequired,
             feature_image: PropTypes.string,
             excerpt: PropTypes.string.isRequired,
-            tags: PropTypes.arrayOf({
+            primary_author: PropTypes.shape({
+                name: PropTypes.string.isRequired,
+                profile_image: PropTypes.string,
+                slug: PropTypes.string,
+            }).isRequired,
+            tags: PropTypes.arrayOf(PropTypes.shape({
                 name: PropTypes.string
-            })
+            }))
         }).isRequired,
     }).isRequired,
     location: PropTypes.object.isRequired,

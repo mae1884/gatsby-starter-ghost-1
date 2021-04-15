@@ -556,6 +556,42 @@ h6 {
     opacity: .6;
 }
 
+.article-byline-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.article-byline-content:hover {
+    text-decoration: none;
+}
+
+.article-byline-content img {
+    width: 46px;
+    height: 46px;
+    margin-right: 12px;
+}
+
+.article-byline-meta {
+    color: #738a94;
+    font-size: 1.4rem;
+    line-height: 1.2em;
+}
+
+.author-name {
+    margin: 0 0 5px;
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: black;
+}
+
+.article-byline-meta .bull {
+    display: inline-block;
+    margin: 0 2px;
+    opacity: .6;
+}
+
 .post-feature-image img {
     margin: 0 0 3vw;
     width: 100%;
