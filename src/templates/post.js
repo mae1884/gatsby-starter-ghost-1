@@ -37,7 +37,7 @@ const Post = ({ data, location }) => {
                                 {post.tags.map(tag => <li key={tag.name}><Link to={`/tag/${tag.slug}/`}>{tag.name}</Link></li>)}
                             </ul>}
                             <h1 className="content-title">{post.title}</h1>
-
+                            <p className="post-excerpt">{post.excerpt}</p>
                             {/* The main post content */ }
                             <section
                                 className="content-body load-external-scripts"
@@ -58,6 +58,7 @@ Post.propTypes = {
             title: PropTypes.string.isRequired,
             html: PropTypes.string.isRequired,
             feature_image: PropTypes.string,
+            excerpt: PropTypes.string.isRequired,
             tags: PropTypes.arrayOf({
                 name: PropTypes.string
             })

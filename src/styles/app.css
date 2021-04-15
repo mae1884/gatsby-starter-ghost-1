@@ -548,6 +548,14 @@ h6 {
     background: #fff;
 }
 
+.post-excerpt {
+    margin: 0 0 3rem;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.4em;
+    opacity: .6;
+}
+
 .post-feature-image img {
     margin: 0 0 3vw;
     width: 100%;
@@ -576,7 +584,7 @@ h6 {
 }
 
 .content-title {
-    margin: 0 0 0.8em;
+    margin: 0 0 0.5em;
     font-size: 5rem;
 }
 @media (max-width: 500px) {
@@ -1165,7 +1173,7 @@ h6 {
   .kg-image-card.kg-width-wide + .kg-image-card.kg-width-wide {
     margin: -2.25em 0 3em;
   }
-  
+
 /* Post Tag List */
 
 ul.tag-list {
