@@ -24,7 +24,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
     const facebookUrl = site.facebook ? `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}` : null
 
     useEffect(() => {
-        if (algoliasearchNetlify)
+        if (algoliasearchNetlify && isHome)
             algoliasearchNetlify({
                 appId: process.env.GATSBY_ALGOLIA_APP_ID,
                 apiKey: process.env.GATSBY_ALGOLIA_SEARCH_KEY,
