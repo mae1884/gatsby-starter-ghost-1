@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
 import { Layout } from '../components/common'
@@ -33,6 +33,9 @@ const Post = ({ data, location }) => {
                                 <img src={ post.feature_image } alt={ post.title } />
                             </figure> : null }
                         <section className="post-full-content">
+                            { post.tags && post.tags.length > 0 && <ul className="tag-list">
+                                {post.tags.map(tag => <li key={tag.name}><Link to={`/tag/${tag.slug}/`}>{tag.name}</Link></li>)}
+                            </ul>}
                             <h1 className="content-title">{post.title}</h1>
 
                             {/* The main post content */ }
@@ -55,6 +58,9 @@ Post.propTypes = {
             title: PropTypes.string.isRequired,
             html: PropTypes.string.isRequired,
             feature_image: PropTypes.string,
+            tags: PropTypes.arrayOf({
+                name: PropTypes.string
+            })
         }).isRequired,
     }).isRequired,
     location: PropTypes.object.isRequired,
