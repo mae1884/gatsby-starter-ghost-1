@@ -39,7 +39,7 @@ const Post = ({ data, location }) => {
                 <div>
                     <article className="content">
                         <section className="post-full-content">
-                            <div className="gh-canvas">
+                            <div className="post-header gh-canvas">
                                 { post.tags && post.tags.length > 0 && <ul className="tag-list">
                                     {post.tags.map(tag => <li key={tag.name}><Link to={`/tag/${tag.slug}/`}>{tag.name}</Link></li>)}
                                 </ul>}

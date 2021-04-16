@@ -590,6 +590,10 @@ h6 {
     line-height: 1.4em;
 }
 
+.post-header {
+    padding: 0 0 6vmin;
+}
+
 .content-body {
     font-family: var(--font-serif);
 }
@@ -639,10 +643,6 @@ h6 {
     display: inline-block;
     margin: 0 5px;
     opacity: .6;
-}
-
-.post-feature-image img {
-    margin: 0 0 3vw;
 }
 
 .content-body h1,
