@@ -16,7 +16,15 @@ import { MetaData } from '../components/common/meta'
 const Post = ({ data, location }) => {
     const post = data.ghostPost
     const readingTime = readingTimeHelper(post)
-    console.log(post)
+    
+    const getFeaturedImageSizeUrl = (width) =>{
+        const featuredImage = post.feature_image
+        if (featuredImage && featuredImage.length) {
+            const [domain, uri] = featuredImage.split('/content/images/')
+            return [domain, '/content/images/size/', `w${width}/`, uri, ` ${width}w`].join('')
+        }
+    }
+
     return (
         <>
             <MetaData
@@ -28,31 +36,38 @@ const Post = ({ data, location }) => {
                 <style type="text/css">{`${post.codeinjection_styles}`}</style>
             </Helmet>
             <Layout>
-                <div className="container">
+                <div>
                     <article className="content">
-                        { post.feature_image ?
-                            <figure className="post-feature-image">
-                                <img src={ post.feature_image } alt={ post.title } />
-                            </figure> : null }
                         <section className="post-full-content">
-                            { post.tags && post.tags.length > 0 && <ul className="tag-list">
-                                {post.tags.map(tag => <li key={tag.name}><Link to={`/tag/${tag.slug}/`}>{tag.name}</Link></li>)}
-                            </ul>}
-                            <h1 className="content-title">{post.title}</h1>
-                            <p className="post-excerpt">{post.excerpt}</p>
-                            <Link to={`/author/${post.primary_author.slug}`} className="article-byline-content">
-                                <img className="author-profile-image" src={post.primary_author.profile_image || '/images/icons/avatar.svg'} alt={post.primary_author.name}/>
-                                <div className="article-byline-meta">
-                                    <div className="author-name">{post.primary_author.name}</div>
-                                    <div>
-                                        <time className="byline-meta-date" dateTime={post.published_at}>{post.published_at_pretty}</time>
-                                        <span className="byline-reading-time"><span className="bull">•</span> {readingTime}</span>
+                            <div className="post-header gh-canvas">
+                                { post.tags && post.tags.length > 0 && <ul className="tag-list">
+                                    {post.tags.map(tag => <li key={tag.name}><Link to={`/tag/${tag.slug}/`}>{tag.name}</Link></li>)}
+                                </ul>}
+                                <h1 className="content-title">{post.title}</h1>
+                                <p className="post-excerpt">{post.excerpt}</p>
+                                <Link to={`/author/${post.primary_author.slug}`} className="article-byline-content">
+                                    <img className="author-profile-image" src={post.primary_author.profile_image || '/images/icons/avatar.svg'} alt={post.primary_author.name}/>
+                                    <div className="article-byline-meta">
+                                        <div className="author-name">{post.primary_author.name}</div>
+                                        <div>
+                                            <time className="byline-meta-date" dateTime={post.published_at}>{post.published_at_pretty}</time>
+                                            <span className="byline-reading-time"><span className="bull">•</span> {readingTime}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </Link>
+                                </Link>
+                                { post.feature_image ?
+                                    <figure className="post-feature-image">
+                                        <img srcset={`${getFeaturedImageSizeUrl(300)},
+                                                ${getFeaturedImageSizeUrl(600)},
+                                                ${getFeaturedImageSizeUrl(1000)},
+                                                ${getFeaturedImageSizeUrl(2000)}`}
+                                            sizes="(min-width: 1400px) 1400px, 92vw"
+                                            src={post.feature_image} alt={ post.title } />
+                                    </figure> : null }
+                            </div>
                             {/* The main post content */ }
                             <section
-                                className="content-body load-external-scripts"
+                                className="content-body load-external-scripts gh-canvas"
                                 dangerouslySetInnerHTML={{ __html: post.html }}
                             />
                         </section>
