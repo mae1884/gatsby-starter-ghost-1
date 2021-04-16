@@ -15,6 +15,7 @@ import { MetaData } from '../components/common/meta'
 */
 const Post = ({ data, location }) => {
     const post = data.ghostPost
+    const accentColor = data.allGhostSettings.nodes[0].accent_color
     const readingTime = readingTimeHelper(post)
     
     const getFeaturedImageSizeUrl = (width) =>{
@@ -41,7 +42,7 @@ const Post = ({ data, location }) => {
                         <section className="post-full-content">
                             <div className="post-header gh-canvas">
                                 { post.tags && post.tags.length > 0 && <ul className="tag-list">
-                                    {post.tags.map(tag => <li key={tag.name}><Link to={`/tag/${tag.slug}/`}>{tag.name}</Link></li>)}
+                                    {post.tags.map(tag => <li key={tag.name}><Link to={`/tag/${tag.slug}/`} style={{color: accentColor}}>{tag.name}</Link></li>)}
                                 </ul>}
                                 <h1 className="content-title">{post.title}</h1>
                                 <p className="post-excerpt">{post.excerpt}</p>
@@ -105,6 +106,11 @@ export const postQuery = graphql`
     query($slug: String!) {
         ghostPost(slug: { eq: $slug }) {
             ...GhostPostFields
+        }
+        allGhostSettings {
+            nodes {
+                accent_color
+            }
         }
     }
 `

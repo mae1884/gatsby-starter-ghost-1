@@ -4,7 +4,7 @@ import { Link } from 'gatsby'
 import { Tags } from '@tryghost/helpers-gatsby'
 import { readingTime as readingTimeHelper } from '@tryghost/helpers'
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, tagColor }) => {
     const url = `/${post.slug}/`
     const readingTime = readingTimeHelper(post)
 
@@ -15,8 +15,8 @@ const PostCard = ({ post }) => {
                     <div className="post-card-image" style={{
                         backgroundImage: `url(${post.feature_image})` ,
                     }}></div>}
-                {post.tags && <div className="post-card-tags"> <Tags post={post} visibility="public" autolink={false} /></div>}
-                {post.featured && <span>Featured</span>}
+                {post.tags && <div className="post-card-tags" style={{ color: tagColor }}> <Tags post={post} visibility="public" autolink={false} /></div>}
+                {post.featured && <div className="post-card-tags" style={{ color: tagColor }}><span>Featured</span></div>}
                 <h2 className="post-card-title">{post.title}</h2>
             </header>
             <section className="post-card-excerpt">{post.excerpt}</section>
@@ -55,6 +55,7 @@ PostCard.propTypes = {
             profile_image: PropTypes.string,
         }).isRequired,
     }).isRequired,
+    tagColor: PropTypes.string
 }
 
 export default PostCard

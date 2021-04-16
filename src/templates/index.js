@@ -15,6 +15,7 @@ import { MetaData } from '../components/common/meta'
 */
 const Index = ({ data, location, pageContext }) => {
     const posts = data.allGhostPost.edges
+    const accentColor = data.allGhostSettings.nodes[0].accent_color
 
     return (
         <>
@@ -24,7 +25,7 @@ const Index = ({ data, location, pageContext }) => {
                     <section className="post-feed">
                         {posts.map(({ node }) => (
                             // The tag below includes the markup for each post - components/common/PostCard.js
-                            <PostCard key={node.id} post={node} />
+                            <PostCard key={node.id} post={node} tagColor={accentColor} />
                         ))}
                     </section>
                     <Pagination pageContext={pageContext} />
@@ -60,6 +61,11 @@ export const pageQuery = graphql`
           ...GhostPostFields
         }
       }
+    }
+    allGhostSettings {
+        nodes {
+            accent_color
+        }
     }
   }
 `
