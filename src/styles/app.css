@@ -621,10 +621,38 @@ h6 {
     text-decoration: none;
 }
 
-.article-byline-content img {
+.article-byline-content .post-card-avatar {
     width: 46px;
     height: 46px;
     margin-right: 12px;
+}
+
+@media (min-width: 1001px) {
+    .post-card-large {
+        grid-column: 1/span 3;
+        display: grid;
+        grid-gap: 4vmin;
+        grid-template-columns: 1fr 1fr 1fr;
+        min-height: 280px;
+        border-top: 0;
+    }
+
+    .post-card-large .post-card-image-link {
+        position: relative;
+        grid-column: 1/span 2;
+        margin-bottom: 0;
+        min-height: 380px;
+    }
+
+    .post-card-large .post-card-image-link .post-card-image{
+        height: 100%;
+    }
+
+    .post-card-large .post-card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 }
 
 .article-byline-meta {
@@ -917,6 +945,7 @@ h6 {
     height: 200px;
     background: var(--color-secondary) no-repeat center center;
     background-size: cover;
+    border-radius: 3px;
 }
 
 .post-card-footer {

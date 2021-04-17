@@ -47,7 +47,9 @@ const Post = ({ data, location }) => {
                                 <h1 className="content-title">{post.title}</h1>
                                 <p className="post-excerpt">{post.excerpt}</p>
                                 <Link to={`/author/${post.primary_author.slug}`} className="article-byline-content">
-                                    <img className="author-profile-image" src={post.primary_author.profile_image || '/images/icons/avatar.svg'} alt={post.primary_author.name}/>
+                                    <div className="post-card-avatar">
+                                        <img className="author-profile-image" src={post.primary_author.profile_image || '/images/icons/avatar.svg'} alt={post.primary_author.name}/>
+                                    </div>
                                     <div className="article-byline-meta">
                                         <div className="author-name">{post.primary_author.name}</div>
                                         <div>
