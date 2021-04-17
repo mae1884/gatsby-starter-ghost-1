@@ -4,12 +4,12 @@ import { Link } from 'gatsby'
 import { Tags } from '@tryghost/helpers-gatsby'
 import { readingTime as readingTimeHelper } from '@tryghost/helpers'
 
-const PostCard = ({ post, tagColor }) => {
+const PostCard = ({ post, tagColor, isFirst }) => {
     const url = `/${post.slug}/`
     const readingTime = readingTimeHelper(post)
 
     return (
-        <Link to={url} className="post-card">
+        <Link to={url} className={`post-card ${isFirst ? 'post-card-large' : ''}`}>
             <header className="post-card-header post-card-image-link">
                 {post.feature_image &&
                     <div className="post-card-image" style={{
@@ -57,7 +57,8 @@ PostCard.propTypes = {
             profile_image: PropTypes.string,
         }).isRequired,
     }).isRequired,
-    tagColor: PropTypes.string
+    tagColor: PropTypes.string,
+    isFirst: PropTypes.bool
 }
 
 export default PostCard
