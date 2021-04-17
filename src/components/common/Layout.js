@@ -98,7 +98,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 <Link to="/">{site.title}</Link> © 2021 &mdash; Published with <a className="site-foot-nav-item" href="https://nipperny.com/about" target="_blank" rel="noopener noreferrer">Principle</a>
                             </div>
                             <div className="site-foot-nav-right">
-                                <Navigation data={site.navigation} navClass="site-foot-nav-item" />
+                                <Navigation data={site.secondary_navigation} navClass="site-foot-nav-item" />
                             </div>
                         </div>
                     </footer>
