@@ -44,19 +44,18 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
             </Helmet>
 
             <div className="viewport">
-
                 <div className="viewport-top">
                     {/* The main header section on top of the screen */}
                     <header className="site-head" style={{ ...site.cover_image && { backgroundImage: `url(${site.cover_image})` } }}>
                         <div className="container">
                             <div className="site-mast">
                                 <div className="site-mast-left">
-                                    <Link to="/">
+                                    {!isHome && <Link to="/">
                                         {site.logo ?
                                             <img className="site-logo" src={site.logo} alt={site.title} />
                                             : <Img fixed={data.file.childImageSharp.fixed} alt={site.title} />
                                         }
-                                    </Link>
+                                    </Link>}
                                 </div>
                                 <div className="site-mast-right">
                                     { site.twitter && <a href={ twitterUrl } className="site-nav-item" target="_blank" rel="noopener noreferrer"><img className="site-nav-icon" src="/images/icons/twitter.svg" alt="Twitter" /></a>}
@@ -66,7 +65,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                             </div>
                             { isHome ?
                                 <div className="site-banner">
-                                    <img className="site-logo" src={site.logo}></img>
+                                    <img className="site-logo home" src={site.logo}></img>
                                     <p className="site-banner-desc">{site.description}</p>
                                     <div id="search-box"></div>
                                 </div> :
@@ -98,7 +97,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome }) => {
                                 <Link to="/">{site.title}</Link> © 2021 &mdash; Published with <a className="site-foot-nav-item" href="https://nipperny.com/about" target="_blank" rel="noopener noreferrer">Principle</a>
                             </div>
                             <div className="site-foot-nav-right">
-                                <Navigation data={site.navigation} navClass="site-foot-nav-item" />
+                                <Navigation data={site.secondary_navigation} navClass="site-foot-nav-item" />
                             </div>
                         </div>
                     </footer>
